@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comandes{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-10 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Comandes</h2>
+            </div>
+            <div class="card-body">
+                <div class="py-3 text-end">
+                    <a href="{{ path('app_comandes_new') }}"><button class="btn btn-primary">Crear nova comanda</button></a>
+                </div>
+                <div class="py-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-2 text-center">Id Comanda</th>
+                                <th class="col-2 text-center">Client</th>
+                                <th class="col-2 text-center">Nom Comanda</th>
+                                <th class="col-2 text-center">Total Comanda</th>
+                                <th class="col-2 text-center">Estat comanda</th>
+                                <th class="col-2 text-center">Accions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for comanda in comandes %}
+                            <tr>
+                                <td class="col-2 ">{{ comanda.idComanda }}</td>
+                                <td class="col-2 ">{{ comanda.nom }}</td>
+                                <td class="col-2 ">{{ comanda.nomComanda }}</td>
+                                <td class="col-2 ">{{ comanda.totalComanda }}</td>
+                                <td class="col-2 ">{{ comanda.estatComanda }}</td>
+                                <td class="text-center">
+                                    <a href="{{ path('app_comandes_show', {'idComanda': comanda.idComanda}) }}">
+                                        <button class="btn btn-primary"><i data-feather="eye"></i></button>
+                                    </a>
+                                    <a href="{{ path('app_comandes_edit', {'idComanda': comanda.idComanda}) }}">
+                                        <button class="btn btn-primary"><i data-feather="edit"></i></button>
+                                    </a>
+                                    {{ include('comandes/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8" class="text-center">No s'ha trobat cap comanda</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

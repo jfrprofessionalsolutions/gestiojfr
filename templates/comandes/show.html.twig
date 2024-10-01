@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comandes{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-9 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Comanda {{ comanda.nomComanda}}</h2>
+            </div>
+            <div class="py-3">
+                <div class="col-3 float-start"> <strong>ID Comanda: </strong> </div>
+                <div class="col-3 float-start"> {{ comanda.idComanda }} </div>
+                <div class="col-3 float-start"> <strong>Client: </strong> </div>
+                <div class="col-3 float-start"> {{ comanda.nomClient }} </div>
+                <div class="float-none"> &nbsp; </div>
+                <div class="col-3 float-start"> <strong>Nom Comanda: </strong> </div>
+                <div class="col-3 float-start"> {{ comanda.nomComanda }} </div>
+                <div class="col-3 float-start"> <strong>Total comanda: </strong> </div>
+                <div class="col-3 float-start"> {{ comanda.totalComanda }} </div>
+                <div class="float-none"> &nbsp; </div>
+                <div class="col-3 float-start"> <strong>Estat: </strong> </div>
+                <div class="col-3 float-start"> {{ comanda.estatComanda }} </div>
+            </div>
+            <div class="py-3">
+                <hr />
+            </div>
+            <div class="py-3">
+                <div>
+                    <h3 class="text-center"> Productes de la comanda </h3>
+                </div>
+            </div>
+            <div class="py-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-2 text-center">ID Producte</th>
+                            <th class="col-2 text-center">Producte</th>
+                            <th class="col-2 text-center">Unitats</th>
+                            <th class="col-2 text-center">Preu / unitat</th>
+                            <th class="col-2 text-center">Preu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for productes in productesComanda %}
+                        <tr>
+                            <td class="col-2 ">{{ productes.idProducte }}</td>
+                            <td class="col-2 ">{{ productes.producte }}</td>
+                            <td class="col-2 ">{{ productes.unitats }}</td>
+                            <td class="col-2 ">{{ productes.preu }} &euro;</td>
+                            <td class="col-2 ">{{ productes.preu * productes.unitats }} &euro;</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8" class="text-center">No s'ha introduit cap producte dins de la comanda</td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <td class="col-2 total-comanda "><strong>Total de la comanda: </strong></td>
+                            <td class="col-2 total-comanda"> &nbsp; </td>
+                            <td class="col-2 total-comanda"> &nbsp; </td>
+                            <td class="col-2 total-comanda"> &nbsp; </td>
+                            <td class="col-2 total-comanda"><strong>0.00 &euro;</strong></td>
+                        </tr>
+                    {% endfor %}
+                    {% if productesComanda|length > 0 %}
+                        <tr>
+                            <td class="col-2 total-comanda "><strong>Total de la comanda: </strong></td>
+                            <td class="col-2 total-comanda"> &nbsp; </td>
+                            <td class="col-2 total-comanda"> &nbsp; </td>
+                            <td class="col-2 total-comanda"> &nbsp; </td>
+                            <td class="col-2 total-comanda"><strong>{{ productesComanda[0].totalComanda }} &euro;</strong></td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="py-3">
+                <a href="{{ path('app_comandes_index') }}"><button class="btn btn-primary">Tornar a la llista de comandes</button></a>
+            </div>
+            <div> &nbsp; </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

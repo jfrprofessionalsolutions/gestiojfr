@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nou pressupost{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-9 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Nou pressupost</h2>
+            </div>
+            <div class="py-3">
+                {{ include('pressupostos/_form.html.twig', {'button_label': 'Crear pressupost'}) }}
+            </div>
+            <div class="py-3">
+                <a href="{{ path('app_pressupostos_index') }}"><button class="btn btn-primary">Veure tots els pressupostos</button></a>
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

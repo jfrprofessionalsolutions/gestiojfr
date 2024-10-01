@@ -1,0 +1,11 @@
+<form class="display-inline" method="post" action="{{ path('app_modificar_unitat',{'id':productes.idComandaProducte}) }}">
+    <input type="hidden" name="idComanda" value="{{ productes.idComanda }}">
+    <input type="hidden" name="unitats" value="{{ productes.unitats }}">
+    {% if afegirUnitat == 0 %}
+        <input type="hidden" name="afegirUnitat" value="0">
+        <button class="btn btn-primary"> - </button>
+    {% else %}
+        <input  type="hidden" name="afegirUnitat" value="1">
+        <button class="btn btn-primary"> + </button>
+    {% endif %}
+</form>

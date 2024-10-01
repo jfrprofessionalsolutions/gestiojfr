@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pagaments{% endblock %}
+
+{% block body %}
+    <h1>Pagaments</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdPagament</th>
+                <td>{{ pagament.idPagament }}</td>
+            </tr>
+            <tr>
+                <th>IdComanda</th>
+                <td>{{ pagament.idComanda }}</td>
+            </tr>
+            <tr>
+                <th>IdClient</th>
+                <td>{{ pagament.idClient }}</td>
+            </tr>
+            <tr>
+                <th>IdFormaPagament</th>
+                <td>{{ pagament.idFormaPagament }}</td>
+            </tr>
+            <tr>
+                <th>IdTipusPagament</th>
+                <td>{{ pagament.idTipusPagament }}</td>
+            </tr>
+            <tr>
+                <th>IdFactura</th>
+                <td>{{ pagament.idFactura }}</td>
+            </tr>
+            <tr>
+                <th>Pagament</th>
+                <td>{{ pagament.pagament }}</td>
+            </tr>
+            <tr>
+                <th>Pagat</th>
+                <td>{{ pagament.pagat }}</td>
+            </tr>
+            <tr>
+                <th>DataCreacio</th>
+                <td>{{ pagament.dataCreacio ? pagament.dataCreacio|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DataModificacio</th>
+                <td>{{ pagament.dataModificacio ? pagament.dataModificacio|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pagaments_index') }}">back to list</a>
+
+    <a href="{{ path('app_pagaments_edit', {'idPagament': pagament.idPagament}) }}">edit</a>
+
+    {{ include('pagaments/_delete_form.html.twig') }}
+{% endblock %}

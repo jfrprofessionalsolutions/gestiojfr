@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pressupostos{% endblock %}
+
+{% block body %}
+    <button class="btn btn-primary"><i data-feather="eye"></i></button>
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-10 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Pressupostos</h2>
+            </div>
+            <div class="card-body">
+                <div class="py-3 text-end">
+                    <a href="{{ path('app_pressupostos_new') }}"><button class="btn btn-primary">Crear nou pressupost</button></a>
+                </div>
+                <div class="py-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-2 text-center">Id Pressupost</th>
+                                <th class="col-2 text-center">Client</th>
+                                <th class="col-2 text-center">Pressupost</th>
+                                <th class="col-2 text-center">Total</th>
+                                <th class="col-2 text-center">Estat</th>
+                                <th class="col-2 text-center">Accions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for pressupost in pressupostos %}
+                            <tr>
+                                <td class="col-2">{{ pressupost.idPressupost }}</td>
+                                <td class="col-2">{{ pressupost.nom }}</td>
+                                <td class="col-2">{{ pressupost.pressupost }}</td>
+                                <td class="col-2">{{ pressupost.totalPressupost }}</td>
+                                <td class="col-2">{{ pressupost.estatPressupost }}</td>
+                                <td class="col-2 text-center">
+                                    <a href="{{ path('app_pressupostos_show', {'idPressupost': pressupost.idPressupost}) }}">
+                                        <button class="btn btn-primary"><i data-feather="eye"></i></button>
+                                    </a>
+                                    <a href="{{ path('app_pressupostos_edit', {'idPressupost': pressupost.idPressupost}) }}">
+                                        <button class="btn btn-primary"><i data-feather="edit"></i></button>
+                                    </a>
+                                    {{ include('pressupostos/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8" class="text-center">No s'ha trobat cap pressupost</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nova comanda{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-9 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Nova comanda</h2>
+            </div>
+            <div>
+                {{ include('comandes/_form.html.twig', {'button_label': 'Crear comanda'}) }}
+            </div>
+            <div class="py-3">
+                <div class="col-4 float-start">
+                    <a href="{{ path('app_comandes_index') }}"><button class="btn btn-primary">Tornar a la llista de comandes</button></a>
+                </div>
+                <div class="col-4 float-start"> &nbsp; </div>
+                <div class="col-4 float-start text-end">
+                    &nbsp;
+                </div>
+                <div class="float-none"> &nbsp; </div>
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

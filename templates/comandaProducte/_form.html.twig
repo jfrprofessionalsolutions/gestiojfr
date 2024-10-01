@@ -1,0 +1,13 @@
+{{ form_start(formAfegirProducte, {'action': path('app_comanda_producte_new', {'idComanda': idComanda}), 'method':'post' }) }}
+    {{ form_widget(formAfegirProducte.idProducte, { 'attr': {'style': 'display:none', 'required': false, 'disabled': true} }) }}
+    <div class="col-3 float-start"> <strong>{{ form_label(formAfegirProducte.idProducte, 'Producte')}}</strong> </div>
+    <div class="col-3 float-start"> {{ render(controller('App\\Controller\\ProductesController::infoProductes', { 'formAfegirProducte': formAfegirProducte })) }} </div>
+    <div class="col-3 float-start"><strong>{{ form_label(formAfegirProducte.unitats)}}</strong></div>
+    <div class="col-3 float-start">{{ form_widget(formAfegirProducte.unitats)}}</div>
+    <div class="float-none"> &nbsp; </div>
+    <div> &nbsp; </div>
+    {{ form_widget(formAfegirProducte.idComanda, {'value': idComanda, 'type': 'hidden'}) }}
+    <div class="py-3 text-center">
+        <button class="btn btn-primary">{{ button_label|default('Afegir producte') }}</button>
+    </div>
+{{ form_end(formAfegirProducte) }}

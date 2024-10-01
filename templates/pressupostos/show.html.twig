@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pressupostos{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-9 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Pressupost {{ pressupost.pressupost }}</h2>
+            </div>   
+            <div class="py-3">
+                <div class="col-3 float-start"> <strong>ID Pressupost: </strong> </div>
+                <div class="col-3 float-start"> {{ pressupost.idPressupost }} </div>
+                <div class="col-3 float-start"> <strong>Client: </strong> </div>
+                <div class="col-3 float-start"> {{ pressupost.nomClient }} </div>
+                <div class="float-none"> &nbsp; </div>
+                <div class="col-3 float-start"> <strong>Pressupost: </strong> </div>
+                <div class="col-3 float-start"> {{ pressupost.pressupost }} </div>
+                <div class="col-3 float-start"> <strong>Total pressupost: </strong> </div>
+                <div class="col-3 float-start"> {{ pressupost.totalPressupost }} </div>
+                <div class="float-none"> &nbsp; </div>
+                <div class="col-3 float-start"> <strong>Estat: </strong> </div>
+                <div class="col-3 float-start"> {{ pressupost.estatPressupost }} </div>
+                <div class="col-3 float-start"> &nbsp;  </div>
+                <div class="col-3 float-start"> &nbsp; </div>
+                <div class="float-none"> &nbsp; </div>
+            </div>
+            <div class="py-3">
+                <hr />
+            </div>
+            <div class="py-3">
+                <div>
+                    <h3 class="text-center"> Productes del pressupost </h3>
+                </div>
+            </div>
+            <div class="py-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-2 text-center">ID Producte</th>
+                            <th class="col-2 text-center">Producte</th>
+                            <th class="col-2 text-center">Unitats</th>
+                            <th class="col-2 text-center">Preu / unitat</th>
+                            <th class="col-2 text-center">Preu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for productes in productesPressupost %}
+                                <tr>
+                                    <td class="col-2 ">{{ productes.idProducte }}</td>
+                                    <td class="col-2 ">{{ productes.producte }}</td>
+                                    <td class="col-2 ">{{ productes.unitats }}</td>
+                                    <td class="col-2 ">{{ productes.preu }} &euro;</td>
+                                    <td class="col-2 ">{{ productes.preu * productes.unitats }} &euro;</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center">No s'ha introduit cap producte dins del pressupost</td>
+                                </tr>
+                                <tr>
+                                <tr>
+                                    <td class="col-2 total-comanda "><strong>Total del pressupost: </strong></td>
+                                    <td class="col-2 total-comanda"> &nbsp; </td>
+                                    <td class="col-2 total-comanda"> &nbsp; </td>
+                                    <td class="col-2 total-comanda"> &nbsp; </td>
+                                    <td class="col-2 total-comanda"><strong>0.00 &euro;</strong></td>
+                                </tr>
+                        {% endfor %}
+                        {% if productesPressupost|length > 0 %}
+                            <tr>
+                                <td class="col-2 total-comanda "><strong>Total del pressupost: </strong></td>
+                                <td class="col-2 total-comanda"> &nbsp; </td>
+                                <td class="col-2 total-comanda"> &nbsp; </td>
+                                <td class="col-2 total-comanda"> &nbsp; </td>
+                                <td class="col-2 total-comanda"><strong>{{ productesPressupost[0].totalPressupost }} &euro;</strong></td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="py-3">
+                <a href="{{ path('app_pressupostos_index') }}"><button class="btn btn-primary">Veure tots els pressupostos</button></a>
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

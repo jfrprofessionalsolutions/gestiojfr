@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuaris{% endblock %}
+
+{% block body %}
+    <button class="btn btn-primary"><i data-feather="eye"></i></button>
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-10 col.lg-10 px-md-4">
+        <div class="py-3">
+            <h2 class="text-center">Usuaris</h2>
+        </div>
+        <div class="card-body">
+            <div class="py-3 text-end">
+                <a href="{{ path('app_users_new') }}"><button class="btn btn-primary">Crear nou usuari</button></a>
+            </div>
+            <div class="py-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-2 col-sm4 text-center">Id Usuari</th>
+                            <th class="col-2 col-sm4 text-center">Email</th>
+                            <th class="col-2 col-sm4 text-center">Rol</th>
+                            <th class="col-2 col-sm4 text-center">Nom</th>
+                            <th class="col-2 col-sm4 text-center">Accions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td class="col-2 col-sm4">{{ user.id }}</td>
+                            <td class="col-2 col-sm4">{{ user.email }}</td>
+                            <td class="col-2 col-sm4">{{ user.roles }}</td>
+                            <td class="col-2 col-sm4">{{ user.nom }}</td>
+                            <td class="col-2 text-center">
+                                 <a class="text-decoration-none" href="{{ path('app_users_show', {'id': user.id}) }}">
+                                    <button class="btn btn-primary"><i data-feather="eye"></i></button>
+                                </a> &nbsp;
+                                <a class="text-decoration-none" href="{{ path('app_users_edit', {'id': user.id}) }}">
+                                    <button class="btn btn-primary"><i data-feather="edit"></i></button>
+                                </a> &nbsp;
+                                {{ include('users/_delete_form.html.twig') }}
+                            </td> 
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center"> No s'ha trobat cap usuari </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

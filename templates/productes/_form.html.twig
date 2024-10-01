@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    <div class="col-3 float-start"> <strong>{{ form_label(form.producte)}}</strong> </div>
+    <div class="col-3 float-start"> {{ form_widget(form.producte)}} </div>
+    <div class="col-3 float-start"><strong>{{ form_label(form.preu)}}</strong></div>
+    <div class="col-3 float-start">{{ form_widget(form.preu)}}</div>
+    <div class="float-none"> &nbsp; </div>
+    <div> &nbsp; </div>
+    <div class="py-3 text-center">
+    <button class="btn btn-primary">{{ button_label|default('Modificar') }}</button>
+    </div>
+{{ form_end(form) }}

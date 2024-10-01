@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <select name="{{ form.idClient.vars['full_name'] }}" id="{{ form.idClient.vars['id'] }}">
+        {% for client in nomClients %}
+            {% if client.nom ==  form.idClient.vars['value'] %}
+                <option value="{{  form.idClient.vars['value'] }}" SELECTED>{{ client.nom }}</option>
+            {% else %}
+                <option value="{{ client.idClient }}">{{ client.nom }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+{% endblock %}

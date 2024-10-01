@@ -1,0 +1,31 @@
+{{ form_start(form) }}
+    {{ form_widget(form.dataCreacio, { 'attr': {'style': 'display:none'} }) }}
+    {{ form_widget(form.dataModificacio, { 'attr': {'style': 'display:none'} }) }}
+    {% if comanda.idComanda != null %}
+        {{ form_widget(form.idClient, { 'attr': {'style': 'display:none'} }) }}
+        {{ form_widget(form.idEstat, { 'attr': {'style': 'display:none'} }) }}
+        {{ form_widget(form.totalComanda, { 'attr': {'style': 'display:none'} }) }}
+    {% else %}
+        {{ form_widget(form.idClient, { 'attr': {'style': 'display:none', 'value': 0} }) }}
+        {{ form_widget(form.idEstat, { 'attr': {'style': 'display:none', 'value': 1 } }) }}
+        {{ form_widget(form.totalComanda, { 'attr': {'style': 'display:none', 'value': 0} }) }}
+    {% endif %}
+    <div class="text-center">{{ form_errors(form) }}</div>
+    <div class="col-3 float-start"> <strong>ID Comanda: </strong> </div>
+    <div class="col-3 float-start"> {% if comanda.idComanda != null %} {{ comanda.idComanda }}  {% else %} &nbsp; {% endif %} </div>
+    <div class="col-3 float-start"> <strong>Client: </strong> </div>
+    <div class="col-3 float-start"> {% if dadesComanda is defined %} {{ dadesComanda.nomClient }} {% else %} {{ render(controller('App\\Controller\\ClientsController::nomClients', { 'form': form })) }} {% endif %} </div>
+    <div class="float-none"> &nbsp; </div>
+    <div class="col-3 float-start"><strong>{{ form_label(form.nomComanda)}}</strong></div>
+    <div class="col-3 float-start">{{ form_widget(form.nomComanda)}}</div>
+    <div class="col-3 float-start"><strong>{{ form_label(form.totalComanda)}}</strong></div>
+    <div class="col-3 float-start"> {% if dadesComanda is defined %} {{ dadesComanda.totalComanda }} {% else %} 0 {% endif %} </div>
+    <div class="float-none"> &nbsp; </div>
+    <div class="col-3 float-start"> <strong>{{ form_label(form.idEstat,'Estat comanda')}}</strong> </div>
+    <div class="col-3 float-start"> {{ render(controller('App\\Controller\\EstatsComandaController::index', { 'form': form })) }} </div>
+    <div class="float-none"> &nbsp; </div>
+    <div> &nbsp; </div>
+    <div class="py-3 text-center">
+        <button class="btn btn-primary">{{ button_label|default('Modificar comanda') }}</button>
+    </div>
+{{ form_end(form) }}

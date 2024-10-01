@@ -1,0 +1,17 @@
+{% block body %}
+    <header class="navbar navbar-dark sticky-top verd-fons-background flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md3 col-lg-2 me-0 px-3">
+            <img class="tamany_logo_principal" src="{{ asset('/img/logo-jfr-professional-solutions.jpg') }}" />
+        </a>
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap">
+                 {% if app.user %}
+                    <a href="{{ path('app_logout') }}"><button class="btn btn-primary">Tancar sessió</button></a> |
+                    <strong>{{ app.user.username }}</strong>
+                {% else %}
+                    <a href="{{ path('app_login') }}"><button class="btn btn-primary">Identificarse a la APP</button></a>
+            {% endif %}
+            </div>
+        </div>
+    </header>
+{% endblock %}

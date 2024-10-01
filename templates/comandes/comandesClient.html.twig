@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="py-3">
+         <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-2 text-center">Id Comanda</th>
+                    <th class="col-2 text-center">Nom Comanda</th>
+                    <th class="col-2 text-center">Total Comanda</th>
+                    <th class="col-2 text-center">Id Estat</th>
+                    <th class="col-2 text-center">Accions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for comande in comandesClient %}
+                <tr>
+                    <td class="col-2 ">{{ comande.idComanda }}</td>
+                    <td class="col-2 ">{{ comande.nomComanda }}</td>
+                    <td class="col-2 ">{{ comande.totalComanda }}</td>
+                    <td class="col-2 ">{{ comande.idEstat }}</td>
+                    <td class="text-center">
+                        <a href="{{ path('app_comandes_show', {'idComanda': comande.idComanda}) }}">
+                            <button class="btn btn-primary"><i data-feather="eye"></i></button>
+                        </a>
+                        <a href="{{ path('app_comandes_edit', {'idComanda': comande.idComanda}) }}">
+                            <button class="btn btn-primary"><i data-feather="edit"></i></button>
+                        </a>
+                        {{ include('comandes/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center">No s'ha trobat cap comanda</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

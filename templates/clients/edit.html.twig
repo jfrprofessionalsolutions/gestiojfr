@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Client{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-9 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Editar {{ client.nom }}</h2>
+            </div>
+            <div class="py-3">
+                {{ include('clients/_form.html.twig', {'button_label': 'Modificar'}) }}
+            </div>
+            <div class="py-3">
+                <hr />
+            </div>
+            <div class="card-body">
+                <div>
+                    <h3 class="text-center"> Comandes de {{ client.nom }}</h3>
+                </div>
+                <div>
+                    <a href="{{ path('app_comandes_new', {'idClient': client.idClient }) }}"><button class="btn btn-primary">Crear nova comanda</button></a>
+                </div>
+                <div>
+                    {{ render(controller('App\\Controller\\ComandesController::comandesClient',{ 'idClient': client.idClient })) }}
+                </div>
+            </div>
+            <a href="{{ path('app_clients_index') }}"><button class="btn btn-primary">Tornar a la llista de clients</button></a>
+            <div class="py-3"> &nbsp; </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nou producte{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-9 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Nou producte</h2>
+            </div>
+            <div class="py-3">
+                {{ include('productes/_form.html.twig', {'button_label': 'Crear nou producte'}) }}
+            </div>
+            <div class="py-3">
+                <a href="{{ path('app_productes_index') }}"><button class="btn btn-primary">Tornar a la llista de productes</button></a>
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

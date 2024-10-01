@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-10 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Dades de {{ client.nom }}</h2>
+            </div>    
+            <div class="py-3">
+                <div class="col-3 float-start"> <strong>ID Client: </strong> </div>
+                <div class="col-3 float-start"> {{ client.idClient }} </div>
+                <div class="col-3 float-start"> <strong>Nom: </strong> </div>
+                <div class="col-3 float-start"> {{ client.nom }} </div>
+                <div class="float-none"> &nbsp; </div>
+                <div class="col-3 float-start"> <strong>Adreça: </strong> </div>
+                <div class="col-3 float-start"> {{ client.adreca }} </div>
+                <div class="col-3 float-start"> <strong>CP: </strong> </div>
+                <div class="col-3 float-start"> {{ client.cp }} </div>
+                <div class="float-none"> &nbsp; </div>
+                <div class="col-3 float-start"> <strong>Població: </strong> </div>
+                <div class="col-3 float-start"> {{ client.poblacio }} </div>
+                <div class="col-3 float-start"> <strong>Provincia: </strong> </div>
+                <div class="col-3 float-start"> {{ client.provincia }} </div>
+                <div class="float-none"> &nbsp; </div>
+                <div class="col-3 float-start"> <strong>País: </strong> </div>
+                <div class="col-3 float-start"> {{ client.pais }} </div>
+                <div class="float-none"> &nbsp; </div>
+            </div>
+            <div class="py-3">
+                <hr />
+            </div>
+            <div class="card-body">
+                <div>
+                    <h3 class="text-center"> Comandes de {{ client.nom }}</h3>
+                </div>
+                {{ render(controller('App\\Controller\\ComandesController::comandesClient',{ 'idClient': client.idClient })) }}
+            </div>
+            <a href="{{ path('app_clients_index') }}"><button class="btn btn-primary">Tornar a la llista de clients</button></a>
+            <div class="py-3"> &nbsp; </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

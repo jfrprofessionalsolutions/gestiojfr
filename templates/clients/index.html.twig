@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="row">
+        {% include 'menu.html.twig' %}
+        <main class="col-md-10 col.lg-10 px-md-4">
+            <div class="py-3">
+                <h2 class="text-center">Clients</h2>
+            </div>    
+            <div class="card-body">
+                <div class="py-3 text-end">
+                    <a href="{{ path('app_clients_new') }}"><button class="btn btn-primary">Crear nou client</button></a>
+                </div>
+                <div class="py-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-3 col-sm4 text-center">ID Client</th>
+                                <th class="col-3 col-sm4 text-center">Nom</th>
+                                <th class="col-3 col-sm4 text-center">Accions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for client in clients %}
+                            <tr>
+                                <td class="col-3 col-sm4">{{ client.idClient }}</td>
+                                <td class="col-3 col-sm4">{{ client.nom }}</td>
+                                <td class="col-3 col-sm4 text-center">
+                                    <a class="text-decoration-none" href="{{ path('app_clients_show', {'idClient': client.idClient}) }}">
+                                        <button class="btn btn-primary"><i data-feather="eye"></i></button>
+                                    </a> &nbsp; 
+                                    <a class="text-decoration-none" href="{{ path('app_clients_edit', {'idClient': client.idClient}) }}">
+                                        <button class="btn btn-primary"><i data-feather="edit"></i></button>
+                                    </a> &nbsp; 
+                                    {{ include('clients/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3" class="text-center">No s'ha trobat cap client</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html.twig' %}
+{% endblock %}

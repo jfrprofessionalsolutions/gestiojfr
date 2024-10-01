@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <select name="{{ form.idEstat.vars['full_name'] }}" id="{{ form.idEstat.vars['id'] }}">
+        {% for estatPressupost in estatsPressupost %}
+            {% if estatPressupost.idEstatPressupost ==  form.idEstat.vars['value'] %}
+                <option value="{{  form.idEstat.vars['value'] }}" SELECTED>{{ estatPressupost.estatPressupost }}</option>
+            {% else %}
+                <option value="{{ estatPressupost.idEstatPressupost }}">{{ estatPressupost.estatPressupost }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+{% endblock %}

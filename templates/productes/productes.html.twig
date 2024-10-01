@@ -1,0 +1,7 @@
+{% block body %}
+    <select id="{{ formAfegirProducte.idProducte.vars['id'] }}" name="{{ formAfegirProducte.idProducte.vars['full_name'] }}" required="required">
+        {% for producte in productes %}
+            <option value="{{ producte.idProducte }}">{{ producte.producte }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}

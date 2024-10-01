@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Productes{% endblock %}
+
+{% block body %}
+{% include 'header.html.twig' %}
+<div class="row">
+    {% include 'menu.html.twig' %}
+        <main class="col-md-10 col.lg-10 px-md-4">
+        <div class="py-3">
+            <h2 class="text-center">Productes</h2>
+        </div>
+        <div class="card-body">
+            <div class="py-3 text-end">
+                <a href="{{ path('app_productes_new') }}"><button class="btn btn-primary">Crear nou producte</button></a>
+            </div>
+            <div class="py-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-3 col-sm4 text-center">IdProducte</th>
+                            <th class="col-3 col-sm4 text-center">Producte</th>
+                            <th class="col-3 col-sm4 text-center">Preu</th>
+                            <th class="col-3 col-sm4 text-center">Accions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for producte in productes %}
+                        <tr>
+                            <td class="col-3 col-sm4">{{ producte.idProducte }}</td>
+                            <td class="col-3 col-sm4">{{ producte.producte }}</td>
+                            <td class="col-3 col-sm4">{{ producte.preu }}</td>
+                            <td class="col-3 col-sm4 text-center">
+                                <a class="text-decoration-none" href="{{ path('app_productes_show', {'idProducte': producte.idProducte}) }}">
+                                    <button class="btn btn-primary"><i data-feather="eye"></i></button>
+                                </a> &nbsp; 
+                                <a class="text-decoration-none" href="{{ path('app_productes_edit', {'idProducte': producte.idProducte}) }}">
+                                    <button class="btn btn-primary"><i data-feather="edit"></i></button>
+                                </a> &nbsp;
+                                {{ include('productes/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center">No s'ha trobat cap producte</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+{% include 'footer.html.twig' %}
+
+{% endblock %}

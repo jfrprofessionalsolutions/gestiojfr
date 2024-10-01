@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Factures{% endblock %}
+
+{% block body %}
+    <h1>Factures</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdFactura</th>
+                <td>{{ facture.idFactura }}</td>
+            </tr>
+            <tr>
+                <th>Factura</th>
+                <td>{{ facture.factura }}</td>
+            </tr>
+            <tr>
+                <th>IdClient</th>
+                <td>{{ facture.idClient }}</td>
+            </tr>
+            <tr>
+                <th>IdComanda</th>
+                <td>{{ facture.idComanda }}</td>
+            </tr>
+            <tr>
+                <th>DataCreacio</th>
+                <td>{{ facture.dataCreacio ? facture.dataCreacio|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DataModificacio</th>
+                <td>{{ facture.dataModificacio ? facture.dataModificacio|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_factures_index') }}">back to list</a>
+
+    <a href="{{ path('app_factures_edit', {'idFactura': facture.idFactura}) }}">edit</a>
+
+    {{ include('factures/_delete_form.html.twig') }}
+{% endblock %}
